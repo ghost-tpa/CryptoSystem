@@ -1,8 +1,6 @@
 # python 3.9.5
-# done 25.04.2022
-from ClassBinMatr import fTransMatrix
 
-# sBox
+# S-Box
 S = [0xfc, 0xee, 0xdd, 0x11, 0xcf, 0x6e, 0x31, 0x16,
      0xfb, 0xc4, 0xfa, 0xda, 0x23, 0xc5, 0x04, 0x4d,
      0xe9, 0x77, 0xf0, 0xdb, 0x93, 0x2e, 0x99, 0xba,
@@ -36,7 +34,7 @@ S = [0xfc, 0xee, 0xdd, 0x11, 0xcf, 0x6e, 0x31, 0x16,
      0x59, 0xa6, 0x74, 0xd2, 0xe6, 0xf4, 0xb4, 0xc0,
      0xd1, 0x66, 0xaf, 0xc2, 0x39, 0x4b, 0x63, 0xb6]
 
-# revSbox
+# reverse of S-Box
 S2 = [0xa5, 0x2d, 0x32, 0x8f, 0x0e, 0x30, 0x38, 0xc0,
       0x54, 0xe6, 0x9e, 0x39, 0x55, 0x7e, 0x52, 0x91,
       0x64, 0x03, 0x57, 0x5a, 0x1c, 0x60, 0x07, 0x18,
@@ -88,65 +86,22 @@ C = [0x6ea276726c487ab85d27bd10dd849401, 0xdc87ece4d890f4b3ba4eb92079cbeb02,
      0xcc843743f6a4ab45de752c1346ecff1d, 0x7ea1add5427c254e391c2823e2a3801e,
      0x1003dba72e345ff6643b95333f27141f, 0x5ea7d8581e149b61f16ac1459ceda820]
 
-H1 = [[0x94, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0x20, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0x85, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0x10, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0xc2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0xc0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0x01, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0xfb, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-      [0x01, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-      [0xc0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-      [0xc2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-      [0x10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-      [0x85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-      [0x20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-      [0x94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [0x01, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-
-H = fTransMatrix(H1)
-
-
-# H = [[148, 32, 133, 16, 194, 192, 1, 251, 1, 192, 194, 16, 133, 32, 148, 1],
-#      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#      [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#      [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#      [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#      [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#      [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#      [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#      [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-#      [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-#      [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-#      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-#      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-#      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-#      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-#      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]]
-
 
 def main() -> None:
-    # k = 0x8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef
-    # a = 0x1122334455667700ffeeddccbbaa9988
-    ftDataIn = open("input.txt", "r")
-    ftWriteData = open("output.txt", "w")
-    aInput = ftDataIn.read().split("\n")
-    k = int(aInput[0], 16)
+    k = 0x8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef
+    a = 0x1122334455667700ffeeddccbbaa9988
     aRKey = fRoundKey(k)
-    a = int(aInput[1], 16)
     print("CipherText: ", hex(fEncrypt(aRKey, a)))
-    ftWriteData.write("CipherText: {}".format(hex(fEncrypt(aRKey, a))) + "\n")
     print("PlainText: ", hex(fDecrypt(aRKey, fEncrypt(aRKey, a))))
-    ftWriteData.write("PlainText: {}".format(hex(fDecrypt(aRKey, fEncrypt(aRKey, a)))) + "\n")
     print("Check: ", fDecrypt(aRKey, fEncrypt(aRKey, a)) == a)
-    ftWriteData.write("Check: {}".format(fDecrypt(aRKey, fEncrypt(aRKey, a)) == a) + "\n")
-
-    ftDataIn.close()
-    ftWriteData.close()
 
 
 def fEncrypt(k: list, a: int) -> int:
+    """
+    :param k: 128-bit vector
+    :param a: 128-bit vector
+    :return: 128-bit vector
+    """
     for i in range(9):
         data = fRouFuncEncr(k[i], a)
         a = data
@@ -154,6 +109,11 @@ def fEncrypt(k: list, a: int) -> int:
 
 
 def fDecrypt(k: list, a: int) -> int:
+    """
+    :param k: 128-bit vector
+    :param a: 128-bit vector
+    :return: 128-bit vector
+    """
     for i in range(9):
         data = fRoundFuncDeCr(k[len(k) - 1 - i], a)
         a = data
@@ -161,18 +121,28 @@ def fDecrypt(k: list, a: int) -> int:
 
 
 def fRouFuncEncr(k: int, a: int):
+    """
+    :param k: 128-bit vector
+    :param a: 128-bit vector
+    :return: 128-bit vector
+    """
     return fLiner(fNonLiner(S, fKeyadd(k, a)))
 
 
 def fRoundFuncDeCr(k: int, a: int):
+    """
+    :param k: 128-bit vector
+    :param a: 128-bit vector
+    :return: 128-bit vector
+    """
     return fNonLiner(S2, fRevL(fKeyadd(k, a)))
 
 
 def fF(k: int, a: int) -> int:
     """
-    :param k: V128
-    :param a: V128
-    :return: V128
+    :param k: 128-bit vector
+    :param a: 128-bit vector
+    :return: 128-bit vector
     """
     # L = a >> 128
     # R = a & 0xffffffffffffffffffffffffffffffff
@@ -180,7 +150,11 @@ def fF(k: int, a: int) -> int:
     return ((fLiner(fNonLiner(S, fKeyadd(k, a >> 128))) ^ (a & 0xffffffffffffffffffffffffffffffff)) << 128) ^ (a >> 128)
 
 
-def fRoundKey(k: int) -> list:  # done test
+def fRoundKey(k: int) -> list:
+    """
+    :param k: 256-bit vector
+    :return: list 10 * 128-bit round key
+    """
     aTemp = []
     aRes = [k >> 128, k & 0xffffffffffffffffffffffffffffffff]  # init
     for j in range(4):
@@ -194,14 +168,23 @@ def fRoundKey(k: int) -> list:  # done test
     return aRes
 
 
-def fR(a: int) -> int:  # a - V128
+def fR(a: int) -> int:
+    """
+    :param a: 128-bit vector
+    :return: 128-bit vector
+    """
     # data1 = fl(a) << 120
     # data2 = (a >> 8) & 0xffffffffffffffffffffffffffffff
     # data1 ^ data2
     return (fl(a) << 120) ^ ((a >> 8) & 0xffffffffffffffffffffffffffffff)
 
 
-def fRevR(a: int) -> int:  # a - V128  # Rev = Reverse
+def fRevR(a: int) -> int:  # Rev = Reverse
+    """
+
+    :param a: 128-bit vector
+    :return: 128-bit vector
+    """
     # data1 = (a & 0x00ffffffffffffffffffffffffffffff) << 8
     # data2 = fl(((a & 0x00ffffffffffffffffffffffffffffff) << 8) ^ (a >> 120))
     # data1 ^ data2
@@ -209,14 +192,22 @@ def fRevR(a: int) -> int:  # a - V128  # Rev = Reverse
            fl(((a & 0xffffffffffffffffffffffffffffff) << 8) ^ (a >> 120))
 
 
-def fRevL(a: int) -> int:  # a - V128
+def fRevL(a: int) -> int:
+    """
+    :param a: 128-bit vector
+    :return: 128-bit vector
+    """
     for i in range(16):
         data = fRevR(a)
         a = data
     return a
 
 
-def fLiner(a: int) -> int:  # a - V128
+def fLiner(a: int) -> int:
+    """
+    :param a: 128-bit vector
+    :return: 128-bit vector
+    """
     for i in range(16):
         data = fR(a)
         a = data
@@ -224,10 +215,19 @@ def fLiner(a: int) -> int:  # a - V128
 
 
 def fKeyadd(k: int, a: int) -> int:
+    """
+    :param k: 128-bit vector
+    :param a: 128-bit vector
+    :return: 128-bit vector
+    """
     return k ^ a
 
 
 def fl(a: int) -> int:  # a - V128
+    """
+    :param a: 128-bit vector
+    :return: 128-bit vector
+    """
     return fMul(a >> 120, 0x94) ^ fMul((a >> 112) & 0xff, 0x20) ^ \
            fMul((a >> 104) & 0xff, 0x85) ^ fMul((a >> 96) & 0xff, 0x10) ^ \
            fMul((a >> 88) & 0xff, 0xc2) ^ fMul((a >> 80) & 0xff, 0xc0) ^ \
@@ -238,7 +238,12 @@ def fl(a: int) -> int:  # a - V128
            fMul((a >> 8) & 0xff, 0x94) ^ fMul((a >> 0) & 0xff, 0x01)
 
 
-def fNonLiner(Sbox, a: int) -> int:  # a - V128
+def fNonLiner(Sbox: list, a: int) -> int:
+    """
+    :param Sbox: type of S-Box (original or reverse)
+    :param a: 128-bit vector
+    :return: 128-bit vector
+    """
     return ((Sbox[a >> 120]) << 120) ^ ((Sbox[(a >> 112) & 0xff]) << 112) ^ \
            ((Sbox[(a >> 104) & 0xff]) << 104) ^ ((Sbox[(a >> 96) & 0xff]) << 96) ^ \
            ((Sbox[(a >> 88) & 0xff]) << 88) ^ ((Sbox[(a >> 80) & 0xff]) << 80) ^ \
@@ -255,7 +260,7 @@ def fMul(p1: int, p2: int) -> int:
     """
     step: int = 0
     res: int = 0b0
-    gx: int = 0b111000011
+    gx: int = 0b111000011  # x^8 + x^7 + x^6 + x + 1
     while p2 != 0:
         if p2 & 0b1 == 1:
             res ^= (p1 << step)
@@ -267,29 +272,5 @@ def fMul(p1: int, p2: int) -> int:
     return res
 
 
-def Diffu(a: int):  # a - V64
-    return (d(a, H[0]) << 120) ^ (d(a, H[1]) << 112) ^ \
-           (d(a, H[2]) << 104) ^ (d(a, H[3]) << 96) ^ \
-           (d(a, H[4]) << 88) ^ (d(a, H[5]) << 80) ^ \
-           (d(a, H[6]) << 72) ^ (d(a, H[7]) << 64) ^ \
-           (d(a, H[8]) << 56) ^ (d(a, H[9]) << 48) ^ \
-           (d(a, H[10]) << 40) ^ (d(a, H[11]) << 32) ^ \
-           (d(a, H[12]) << 24) ^ (d(a, H[13]) << 16) ^ \
-           (d(a, H[14]) << 8) ^ d(a, H[15])
-
-
-def d(a: int, b: list):
-    """
-        dot product vector and list
-    :return: int V64
-    """
-    res = 0b0
-    for i in range(len(H[0])):
-        res ^= fMul((a >> (128 - (8 * (i + 1))) & 0xff), b[i])
-    return res
-
-
 if __name__ == '__main__':
-    a = 0x00000000000000000000000000000100
-    print(hex(fR(a)))
-    print(hex(Diffu(a)))
+    main()
